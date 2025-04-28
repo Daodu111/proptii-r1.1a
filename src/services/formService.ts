@@ -1,23 +1,24 @@
-interface FormSubmission {
+import { DatabaseFormSubmission } from '../types/database';
+
+const API_BASE_URL = 'https://proptii-referencing-api.azurewebsites.net/api';
+
+export interface FormSubmission {
   formData: any;
   userId: string;
   submittedAt: string;
   formType: string;
 }
 
-// Update this to use your Azure Function URL
-const API_BASE_URL = 'https://referencing-backend.azurewebsites.net';
-
 export const submitFormToDatabase = async (submission: FormSubmission): Promise<void> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/forms/submit`, {
+    const response = await fetch(`${API_BASE_URL}/forms/submit`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
       body: JSON.stringify(submission),
-      credentials: 'include' // Add this for CORS
+      credentials: 'include'
     });
 
     if (!response.ok) {
@@ -32,4 +33,15 @@ export const submitFormToDatabase = async (submission: FormSubmission): Promise<
     console.error('Error submitting form:', error);
     throw error;
   }
+};
+
+export const submitReferencingForm = async (formData: any, userId: string): Promise<void> => {
+  const submission: FormSubmission = {
+    formData,
+    userId,
+    submittedAt: new Date().toISOString(),
+    formType: 'referencing'
+  };
+
+  await submitFormToDatabase(submission);
 };
