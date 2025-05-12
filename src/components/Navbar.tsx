@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [loginInProgress, setLoginInProgress] = useState(false);
   const [loginError, setLoginError] = useState(null);
-  
+
   const mobileMenuRef = useRef(null);
   const userDropdownRef = useRef(null);
 
@@ -17,16 +17,16 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       // Close user dropdown when clicking outside
-      if (isDropdownOpen && 
-          userDropdownRef.current && 
-          !userDropdownRef.current.contains(event.target)) {
+      if (isDropdownOpen &&
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
-      
+
       // Close mobile menu when clicking outside
-      if (isMobileMenuOpen && 
-          mobileMenuRef.current && 
-          !mobileMenuRef.current.contains(event.target)) {
+      if (isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -56,7 +56,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('auth-state-changed', handleAuthStateChange);
-    
+
     return () => {
       window.removeEventListener('auth-state-changed', handleAuthStateChange);
     };
@@ -81,25 +81,25 @@ const Navbar = () => {
       setLoginError(null);
       setLoginInProgress(true);
       setIsMobileMenuOpen(false); // Close mobile menu if open
-      
+
       // Inform the user that they might be redirected
       console.log("Starting login process. You may be redirected to the login page.");
-      
+
       await login();
-      
+
       // If we get here, the popup login was successful
       console.log("Login successful via popup");
     } catch (error) {
       console.error("Login error in Navbar:", error);
       setLoginInProgress(false);
-      
+
       // Check if the error is related to popup blocking
       if (error instanceof Error && error.message.includes('popup')) {
         setLoginError("Popup was blocked. Please allow popups for this site or you will be redirected.");
       } else {
         setLoginError("Login failed. Please try again.");
       }
-      
+
       // Auto-clear error after 5 seconds
       setTimeout(() => setLoginError(null), 5000);
     }
@@ -127,8 +127,8 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/referencing', label: 'Referencing' },
     { path: '/bookviewing', label: 'Book Viewing' },
+    { path: '/referencing', label: 'Referencing' },
     { path: '/contracts', label: 'Contracts' },
     { path: '/Dashboard', label: 'Dashboard' },
   ];
@@ -146,13 +146,13 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center space-x-8">
             {navLinks.map((link) => (
-              <Link 
+              <Link
                 key={link.path}
-                to={link.path} 
+                to={link.path}
                 className="text-white hover:text-gray-200 transition-colors"
               >
                 {link.label}
@@ -164,7 +164,7 @@ const Navbar = () => {
           <div className="hidden md:block flex-shrink-0 relative ml-4">
             {isAuthenticated ? (
               <div className="relative user-dropdown" ref={userDropdownRef}>
-                <button 
+                <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center space-x-2 text-white focus:outline-none"
                 >
@@ -204,7 +204,7 @@ const Navbar = () => {
                     )}
                   </div>
                 )}
-                <button 
+                <button
                   onClick={handleLogin}
                   className="bg-primary text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center"
                   disabled={isLoading || loginInProgress}
@@ -247,22 +247,22 @@ const Navbar = () => {
 
       {/* Mobile Navigation Dropdown */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           ref={mobileMenuRef}
           className="md:hidden bg-gray-800 shadow-lg rounded-b-lg mx-4 mt-1 py-2 px-4 animate-slideDown"
         >
           <div className="flex flex-col space-y-3">
             {navLinks.map((link) => (
-              <Link 
+              <Link
                 key={link.path}
-                to={link.path} 
+                to={link.path}
                 className="text-white hover:text-gray-200 py-2 transition-colors"
                 onClick={closeMenuAndNavigate}
               >
                 {link.label}
               </Link>
             ))}
-            
+
             {/* Mobile Auth Section */}
             {isAuthenticated ? (
               <>
@@ -289,7 +289,7 @@ const Navbar = () => {
             ) : (
               <>
                 <div className="py-2 border-t border-gray-700 mt-2"></div>
-                <button 
+                <button
                   onClick={handleLogin}
                   className="flex items-center w-full text-white hover:text-gray-200 py-2"
                   disabled={isLoading || loginInProgress}

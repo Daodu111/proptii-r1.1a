@@ -29,6 +29,7 @@ import TenantReferencing from './components/dashboard/sections/TenantReferencing
 import AgentHome from './pages/AgentHome';
 import Listings from './pages/Listings';
 import NewListingPage from './pages/listings/new';
+import AboutUs from './pages/AboutUs';
 import ErrorBoundary from './components/ErrorBoundary';
 
 console.log('App.tsx - Starting initialization with config:', msalConfig);
@@ -53,50 +54,51 @@ function App() {
 
   return (
     <ErrorBoundary fallback={<div>Custom fallback UI</div>}>
-    {/*<ThemeProvider theme={theme}>*/}
+      {/*<ThemeProvider theme={theme}>*/}
       <CssBaseline />
       <MSALProviderWrapper>
         {/*<RedirectUriWarning />*/}
         <AuthProvider>
-        <Router>
-        {/*<Box sx={{ 
+          <Router>
+            {/*<Box sx={{ 
             minHeight: '100vh', 
             display: 'flex', 
             flexDirection: 'column',
             bgcolor: 'background.default'
           }}>*/}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/agent" element={<AgentHome />} />
-            <Route path="/referencing" element={<Referencing />} />
-            <Route path="/contracts" element={<ContractsPage />} />
-            <Route path="/bookviewing" element={<BookViewing />} />
-            {/*<Route path="/referencing-test" element={<ReferencingTest />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/agent" element={<AgentHome />} />
+              <Route path="/referencing" element={<Referencing />} />
+              <Route path="/contracts" element={<ContractsPage />} />
+              <Route path="/bookviewing" element={<BookViewing />} />
+              {/*<Route path="/referencing-test" element={<ReferencingTest />} />
             <Route path="/test-referencing" element={<TestReferencingPage />} />
             <Route path="/backend-test" element={<BackendIntegrationTest />} />
   <Route path="/referencing-modal-test" element={<ReferencingModalTest />} />*/}
 
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
-              
+
               {/* Listings routes */}
               <Route path="/listings" element={<Listings />} />
               <Route path="/listings/new" element={<NewListingPage />} />
-            
-            {/* Dashboard Routes */}
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route index element={<DashboardHome />} />
-              <Route path="saved-searches" element={<SavedProperties />} />
-              <Route path="viewings" element={<Viewings />} />
-              <Route path="tenant-contracts" element={<TenantContracts/>} />
-              <Route path="your-files" element={<FileTable />} />
-              <Route path="tenant-referencing" element={<TenantReferencing />} />
-            </Route>
-          </Routes>
-        </Router>
+
+              {/* Dashboard Routes */}
+              <Route path="/dashboard" element={<Dashboard />}>
+                <Route index element={<DashboardHome />} />
+                <Route path="saved-searches" element={<SavedProperties />} />
+                <Route path="viewings" element={<Viewings />} />
+                <Route path="tenant-contracts" element={<TenantContracts />} />
+                <Route path="your-files" element={<FileTable />} />
+                <Route path="tenant-referencing" element={<TenantReferencing />} />
+              </Route>
+            </Routes>
+          </Router>
         </AuthProvider>
       </MSALProviderWrapper>
-    {/*</ThemeProvider>*/}
+      {/*</ThemeProvider>*/}
     </ErrorBoundary>
   );
 }

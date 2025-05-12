@@ -23,24 +23,24 @@ function Footer() {
 
         {/* Navigation Links */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-16">
-        <div>
-          <h4 className="text-lg font-semibold mb-3">Home</h4>
-          <ul className="space-y-2 text-sm opacity-75">
-            <li>
-              <Link to="/bookviewing" className="hover:underline">
-                Book Viewings
-              </Link>
-            </li>
-            <li>
-              <Link to="/referencing" className="hover:underline">
-                Referencing
-              </Link>
-            </li>
-            <li>
-              <Link to="/contracts" className="hover:underline">
-                Contracts
-              </Link>
-            </li>
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Home</h4>
+            <ul className="space-y-2 text-sm opacity-75">
+              <li>
+                <Link to="/bookviewing" className="hover:underline">
+                  Book Viewings
+                </Link>
+              </li>
+              <li>
+                <Link to="/referencing" className="hover:underline">
+                  Referencing
+                </Link>
+              </li>
+              <li>
+                <Link to="/contracts" className="hover:underline">
+                  Contracts
+                </Link>
+              </li>
               {/*<li>
                 <button onClick={() => navigate('/bookviewing')} className="hover:underline">
                   Book Viewings
@@ -57,32 +57,36 @@ function Footer() {
                 </button>
 </li>*/}
             </ul>
-        </div>
+          </div>
 
-        <div>
-          <h4 className="text-lg font-semibold mb-3">Contact</h4>
-          <ul className="space-y-2 text-sm opacity-75">
-            <li><a href="#">Email</a></li>
-            <li><a href="#">Phone</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Contact</h4>
+            <ul className="space-y-2 text-sm opacity-75">
+              <li><a href="#">Email</a></li>
+              <li><a href="#">Phone</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
 
-        <div>
-          <h4 className="text-lg font-semibold mb-3">Company</h4>
-          <ul className="space-y-2 text-sm opacity-75">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Company</h4>
+            <ul className="space-y-2 text-sm opacity-75">
+              <li>
+                <Link to="/about" className="hover:underline">
+                  About Us
+                </Link>
+              </li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-      </div>
-      
+
       {/* Horizontal Line */}
       <hr className="border-gray-700 my-6" />
-      
+
       {/* Footer Bottom Section */}
       <div className="flex justify-between items-center max-w-6xl mx-auto text-sm opacity-75">
         <p>Copyright 2025, All Rights Reserved by Proptii &copy;</p>
